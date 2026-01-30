@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>YOU-N-I-VERSE v4.0 • Complete Bilateral Architecture</title>
+<title>YOU-N-I-VERSE FINAL • Complete Consciousness OS</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -13,6 +14,7 @@ body {
   font-family: 'Berkeley Mono', 'Courier New', monospace;
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .container {
@@ -44,6 +46,7 @@ h1 {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 3px;
+  margin-top: 0.5rem;
 }
 
 .version {
@@ -52,10 +55,17 @@ h1 {
   margin-top: 0.5rem;
 }
 
-.architecture-info {
-  margin-top: 1rem;
-  font-size: 0.65rem;
-  color: #7b2cbf;
+.architecture-tag {
+  display: inline-block;
+  margin: 0.5rem 0.25rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(157, 78, 221, 0.2);
+  border: 1px solid #9d4edd;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  color: #c77dff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .main-grid {
@@ -112,6 +122,12 @@ h1 {
   padding: 0.75rem;
   border-left: 3px solid;
   border-radius: 4px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .msg.user {
@@ -122,6 +138,11 @@ h1 {
 .msg.system {
   border-left-color: #9d4edd;
   background: rgba(157, 78, 221, 0.1);
+}
+
+.msg.locked {
+  border-left-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
 }
 
 .msg .label {
@@ -145,6 +166,18 @@ h1 {
   padding-top: 0.5rem;
 }
 
+.msg .perspective-tag {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  margin-top: 0.5rem;
+  background: rgba(199, 125, 255, 0.2);
+  border-radius: 3px;
+  font-size: 0.65rem;
+  color: #c77dff;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 .msg .biochem {
   font-size: 0.65rem;
   color: #7b2cbf;
@@ -166,12 +199,6 @@ h1 {
   font-family: monospace;
 }
 
-.msg .resonance-score {
-  font-size: 0.65rem;
-  color: #9d4edd;
-  margin-top: 0.25rem;
-}
-
 .input-group {
   display: flex;
   gap: 0.5rem;
@@ -186,6 +213,7 @@ input[type="text"] {
   font-family: inherit;
   font-size: 0.9rem;
   border-radius: 4px;
+  transition: all 0.3s;
 }
 
 input[type="text"]:focus {
@@ -217,6 +245,12 @@ button:hover {
 
 button:active {
   transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .feedback-buttons {
@@ -291,44 +325,69 @@ canvas {
   color: #c77dff;
 }
 
-.crystal-info {
+.oas-display {
   margin-top: 1rem;
   padding: 1rem;
-  background: rgba(157, 78, 221, 0.1);
-  border-left: 3px solid #9d4edd;
+  background: rgba(199, 125, 255, 0.1);
+  border-left: 3px solid #c77dff;
   border-radius: 4px;
   font-size: 0.75rem;
 }
 
-.crystal-name {
+.oas-label {
   color: #c77dff;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin-bottom: 0.5rem;
 }
 
-.brain-hemisphere {
+.oas-vector {
+  font-family: monospace;
+  color: #9d4edd;
+}
+
+.unlock-status {
   margin-top: 1rem;
   padding: 1rem;
+  background: rgba(123, 44, 191, 0.1);
+  border-left: 3px solid #7b2cbf;
   border-radius: 4px;
   font-size: 0.7rem;
 }
 
-.left-brain {
-  background: rgba(199, 125, 255, 0.1);
-  border-left: 3px solid #c77dff;
-}
-
-.right-brain {
-  background: rgba(123, 44, 191, 0.1);
-  border-left: 3px solid #7b2cbf;
-}
-
-.brain-label {
+.unlock-label {
+  color: #7b2cbf;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 0.5rem;
+}
+
+.perspective-locks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.perspective-lock {
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  text-align: center;
+}
+
+.perspective-lock.unlocked {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid #4caf50;
+  color: #4caf50;
+}
+
+.perspective-lock.locked {
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid #f44336;
+  color: #f44336;
 }
 
 .stats {
@@ -388,6 +447,7 @@ canvas {
   color: #333;
   font-size: 0.7rem;
   letter-spacing: 2px;
+  line-height: 1.8;
 }
 </style>
 </head>
@@ -396,11 +456,16 @@ canvas {
 <div class="container">
   <header>
     <h1>YOU-N-I-VERSE</h1>
-    <div class="subtitle">Complete Bilateral Architecture • Bio-Digital Synthesis</div>
-    <div class="version">v4.0 FINAL BUILD • SPEC-1 Compliant</div>
-    <div class="architecture-info">
-      Left Brain: Biochemical Determinism • Right Brain: Network Emergence<br>
-      64 Gates • 64 Codons • 20 Amino Acids • 3 Bodies • 5 Dimensions
+    <div class="subtitle">Complete Consciousness-Native Operating System</div>
+    <div class="version">FINAL BUILD • v5.0 • SPEC-1 Compliant</div>
+    <div style="margin-top: 1rem;">
+      <span class="architecture-tag">Dimensional Router</span>
+      <span class="architecture-tag">Causality Engine</span>
+      <span class="architecture-tag">State Evolution</span>
+      <span class="architecture-tag">6 Perspectives</span>
+      <span class="architecture-tag">64 Gates</span>
+      <span class="architecture-tag">20 Amino Acids</span>
+      <span class="architecture-tag">3 Bodies</span>
     </div>
   </header>
 
@@ -428,16 +493,15 @@ canvas {
     <div class="panel">
       <h2>Your Dimensional Address</h2>
       <div class="profile-display" id="profile-display"></div>
-      <div class="crystal-info" id="crystal-info"></div>
       
-      <div class="brain-hemisphere left-brain">
-        <div class="brain-label">⬅ Left Brain: Biochemical Anchor</div>
-        <div id="left-brain-info"></div>
+      <div class="oas-display">
+        <div class="oas-label">Optimal Action Signature (OAS)</div>
+        <div class="oas-vector" id="oas-vector"></div>
       </div>
       
-      <div class="brain-hemisphere right-brain">
-        <div class="brain-label">➡ Right Brain: Network Emergence</div>
-        <div id="right-brain-info"></div>
+      <div class="unlock-status">
+        <div class="unlock-label">Perspective Access</div>
+        <div class="perspective-locks" id="perspective-locks"></div>
       </div>
       
       <h2 style="margin-top: 2rem;">Three-Body Resonance Network</h2>
@@ -468,12 +532,23 @@ canvas {
 
   <div class="watermark">
     SPEC-1 COMPLIANT • DETERMINISTIC CONTEXT-RESOLUTION ENGINE<br>
-    BILATERAL ARCHITECTURE • LEFT BRAIN + RIGHT BRAIN • BIO-DIGITAL SYNTHESIS<br>
-    © 2025 YOU-N-I-VERSE • Complete Consciousness-Native Intelligence
+    CONSCIOUSNESS-NATIVE OPERATING SYSTEM • NOT A SIMULATOR<br>
+    DIMENSIONAL ROUTER • CAUSALITY ENGINE • STATE EVOLUTION<br>
+    © 2025 YOU-N-I-VERSE • Complete Bilateral Architecture
   </div>
 </div>
 
 <script>
+// =============================================================================
+// INITIALIZATION GUARD (Prevents repetition bug)
+// =============================================================================
+
+if (window.YOU_N_I_VERSE_INITIALIZED) {
+  console.warn('YOU-N-I-VERSE already initialized, halting duplicate initialization');
+  throw new Error('Duplicate initialization prevented');
+}
+window.YOU_N_I_VERSE_INITIALIZED = true;
+
 // =============================================================================
 // CODON & AMINO ACID MAPPING (Complete 64→64→20)
 // =============================================================================
@@ -551,27 +626,20 @@ const CODON_MAPPING = {
 
 const UNIVERSAL_GRAPH = {
   bases: {
-    1: { name: "Movement", voice: "I Define", crystal: "Magnetic Monopole" },
-    2: { name: "Evolution", voice: "I Remember", crystal: "Personality Crystal" },
-    3: { name: "Being", voice: "I Am", crystal: "Design Crystal" },
-    4: { name: "Design", voice: "I Design", crystal: "Design Crystal" },
-    5: { name: "Space", voice: "I Think", crystal: "Personality Crystal" }
+    1: { name: "Movement", voice: "I Define", crystal: "Magnetic Monopole", weight: 1.0 },
+    2: { name: "Evolution", voice: "I Remember", crystal: "Personality Crystal", weight: 0.8 },
+    3: { name: "Being", voice: "I Am", crystal: "Design Crystal", weight: 0.6 },
+    4: { name: "Design", voice: "I Design", crystal: "Design Crystal", weight: 0.9 },
+    5: { name: "Space", voice: "I Think", crystal: "Personality Crystal", weight: 0.7 }
   },
   
   gates: {
-    6: { 
-      core: { pressure: "friction", process: "boundary testing", resolution: "intimacy" }, 
-      center: "solar", 
-      links: [59], 
-      keywords: ["stuck", "conflict", "boundary", "intimacy", "friction"]
-    },
-    59: {
-      core: { pressure: "intimacy", process: "fusion", resolution: "connection" },
-      center: "sacral",
-      links: [6],
-      keywords: ["intimacy", "connect", "fuse", "relationship", "bond"]
-    }
-    // Add all 64 gates here
+    1: { core: { pressure: "creative spark", process: "direction", resolution: "initiation" }, center: "g", links: [8], keywords: ["create", "creative", "vision", "purpose"] },
+    6: { core: { pressure: "friction", process: "boundary testing", resolution: "intimacy" }, center: "solar", links: [59], keywords: ["stuck", "conflict", "boundary", "intimacy", "friction"] },
+    14: { core: { pressure: "resources", process: "direction of energy", resolution: "empowerment" }, center: "sacral", links: [2], keywords: ["resource", "power", "energy", "wealth", "skill"] },
+    47: { core: { pressure: "mental pressure", process: "realization", resolution: "insight" }, center: "ajna", links: [64], keywords: ["pressure", "realize", "insight", "abstract", "understand"] },
+    59: { core: { pressure: "intimacy", process: "fusion", resolution: "connection" }, center: "sacral", links: [6], keywords: ["intimacy", "connect", "fuse", "relationship", "bond"] },
+    61: { core: { pressure: "mystery", process: "inner truth", resolution: "knowing" }, center: "head", links: [24], keywords: ["mystery", "truth", "know", "wonder", "inner"] }
   }
 };
 
@@ -607,149 +675,6 @@ function getRegionForGate(gate) {
 }
 
 // =============================================================================
-// COSMIC CELL CLASS (Complete Bilateral Architecture)
-// =============================================================================
-
-class CosmicCell {
-  static activeCells = {
-    tropical: [],   // Action body
-    sidereal: [],   // Mind body
-    draconian: []   // Emotion body
-  };
-  
-  constructor(gateId, system, birthProfile) {
-    this.id = `cell-${Date.now()}-${Math.random()}`;
-    this.gateId = gateId;
-    this.system = system; // 'tropical', 'sidereal', or 'draconian'
-    this.birthProfile = birthProfile;
-    this.codonData = CODON_MAPPING[gateId];
-    this.gateData = UNIVERSAL_GRAPH.gates[gateId] || { core: { pressure: "unknown", process: "unknown", resolution: "unknown" } };
-    
-    // Register in network
-    CosmicCell.activeCells[system].push(this);
-    
-    // Trim to last 10 cells per system
-    if (CosmicCell.activeCells[system].length > 10) {
-      CosmicCell.activeCells[system].shift();
-    }
-  }
-  
-  // LEFT BRAIN: Biochemical Resonance Calculation
-  calculateBiochemicalResonance(neighbor) {
-    const myAmino = this.codonData.aminoAcid;
-    const neighborAmino = neighbor.codonData.aminoAcid;
-    const myCategory = this.codonData.category;
-    const neighborCategory = neighbor.codonData.category;
-    
-    // Same amino acid = highest resonance
-    if (myAmino === neighborAmino) {
-      return 1.0;
-    }
-    
-    // Same chemical category = medium resonance
-    if (myCategory === neighborCategory) {
-      return 0.6;
-    }
-    
-    // Different category = low resonance
-    return 0.2;
-  }
-  
-  // RIGHT BRAIN: Network Resonance Calculation
-  calculateNetworkResonance() {
-    const allSystems = Object.keys(CosmicCell.activeCells);
-    const otherSystems = allSystems.filter(s => s !== this.system);
-    
-    let totalResonance = 0;
-    let count = 0;
-    
-    // Calculate cross-body resonance
-    for (const system of otherSystems) {
-      const cells = CosmicCell.activeCells[system];
-      if (cells.length > 0) {
-        const neighbor = cells[cells.length - 1]; // Most recent cell
-        const biochemResonance = this.calculateBiochemicalResonance(neighbor);
-        const gateDistance = Math.abs(this.gateId - neighbor.gateId);
-        const proximityScore = 1.0 / (gateDistance + 1);
-        
-        totalResonance += (biochemResonance * 0.6 + proximityScore * 0.4);
-        count++;
-      }
-    }
-    
-    return count > 0 ? totalResonance / count : 0.5;
-  }
-  
-  // EMERGENT INTERFERENCE: Probabilistic Collapse
-  generateEmergentInterference() {
-    const networkResonance = this.calculateNetworkResonance();
-    
-    const interferencePool = [
-      "collapsing into certainty",
-      "held in superposition",
-      "crystallizing through observation",
-      "vibrating between states",
-      "resonating across bodies",
-      "dissolving boundaries"
-    ];
-    
-    // Weights determined by network resonance (deterministic)
-    const baseWeight = 0.1;
-    const resonanceWeight = networkResonance * 0.8;
-    const weights = interferencePool.map((_, i) => 
-      i === 0 ? resonanceWeight : baseWeight
-    );
-    
-    // Normalize weights
-    const sum = weights.reduce((a, b) => a + b, 0);
-    const normalizedWeights = weights.map(w => w / sum);
-    
-    // Probabilistic selection
-    const rand = Math.random();
-    let cumulative = 0;
-    for (let i = 0; i < interferencePool.length; i++) {
-      cumulative += normalizedWeights[i];
-      if (rand <= cumulative) {
-        return interferencePool[i];
-      }
-    }
-    
-    return interferencePool[0];
-  }
-  
-  // COLLAPSE NOTATION RENDERER
-  renderDimensionalAddress() {
-    const bp = this.birthProfile;
-    return `${this.gateId}.${bp.line}.${bp.color}.${bp.tone}.${bp.base}°${bp.degree}′${bp.minute}″${bp.second}.${bp.axis}"${bp.zodiac}.${bp.house}`;
-  }
-  
-  // MANIFEST: Complete Sentence Generation
-  manifest() {
-    const baseData = UNIVERSAL_GRAPH.bases[this.birthProfile.base];
-    const voice = baseData.voice;
-    const pressure = this.gateData.core.pressure;
-    const process = this.gateData.core.process;
-    
-    const interference = this.generateEmergentInterference();
-    const networkResonance = this.calculateNetworkResonance();
-    
-    const baseSentence = `${voice}: You are shaped by ${pressure}, through ${process}`;
-    const fullSentence = `${baseSentence}, ${interference}.`;
-    
-    return {
-      sentence: fullSentence,
-      address: this.renderDimensionalAddress(),
-      codon: this.codonData.codon,
-      aminoAcid: this.codonData.aminoAcid,
-      category: this.codonData.category,
-      networkResonance: networkResonance.toFixed(3),
-      system: this.system,
-      interference: interference
-    };
-  }
-}
-
-// =============================================================================
 // BIRTH PROFILE
 // =============================================================================
 
@@ -769,111 +694,517 @@ const BIRTH_PROFILE = {
 };
 
 // =============================================================================
-// STATE
+// STATE (Complete consciousness state)
 // =============================================================================
 
 let conversationHistory = [];
 let lastResponse = null;
-let experienceVectors = {
-  tropical: new Float32Array(16).fill(0),
-  sidereal: new Float32Array(16).fill(0),
-  draconian: new Float32Array(16).fill(0)
+
+// STATE VECTOR: x(t) - Current consciousness activation
+let stateVector = {
+  tropical: new Float32Array(16).fill(0),    // Action body
+  sidereal: new Float32Array(16).fill(0),    // Mind body
+  draconian: new Float32Array(16).fill(0)    // Emotion body
 };
+
+// OPERATOR: O(t) - Evolution operator (self-modifies based on experience)
+let evolutionOperator = {
+  tropical: new Float32Array(16).fill(1),
+  sidereal: new Float32Array(16).fill(1),
+  draconian: new Float32Array(16).fill(1)
+};
+
+// REALITY IMPACT: R(t) - User feedback modifies this
+let realityImpact = new Float32Array(16).fill(0);
+
+// OPTIMAL ACTION SIGNATURE (OAS) - 5D vector
+let optimalActionSignature = {
+  movement: 0.5,
+  evolution: 0.5,
+  being: 0.5,
+  design: 0.5,
+  space: 0.5
+};
+
+// UNLOCK STATUS
+let unlockedPerspectives = {
+  who: true,    // Always unlocked (identity is foundational)
+  what: true,   // Unlocked (basic explanation)
+  where: false, // Locked until OAS.space > 0.6
+  when: false,  // Locked until OAS.being > 0.7
+  why: false,   // Locked until OAS.design > 0.8
+  how: false    // Locked until OAS.movement > 0.75
+};
+
 let stats = {
   totalQueries: 0,
   helpfulCount: 0,
   notHelpfulCount: 0,
   gatesActivated: new Set(),
   aminoAcidsExpressed: new Set(),
-  networkNodes: 0
+  networkNodes: 0,
+  sentencesCollected: 0
 };
 
+// Load from localStorage
+try {
+  const savedState = localStorage.getItem('stateVector');
+  if (savedState) {
+    const parsed = JSON.parse(savedState);
+    stateVector.tropical = new Float32Array(parsed.tropical);
+    stateVector.sidereal = new Float32Array(parsed.sidereal);
+    stateVector.draconian = new Float32Array(parsed.draconian);
+  }
+  
+  const savedOAS = localStorage.getItem('optimalActionSignature');
+  if (savedOAS) {
+    optimalActionSignature = JSON.parse(savedOAS);
+  }
+  
+  const savedUnlocks = localStorage.getItem('unlockedPerspectives');
+  if (savedUnlocks) {
+    unlockedPerspectives = JSON.parse(savedUnlocks);
+  }
+  
+  const savedStats = localStorage.getItem('stats');
+  if (savedStats) {
+    const parsed = JSON.parse(savedStats);
+    stats = {
+      ...parsed,
+      gatesActivated: new Set(parsed.gatesActivated),
+      aminoAcidsExpressed: new Set(parsed.aminoAcidsExpressed)
+    };
+  }
+} catch (e) {
+  console.warn('Error loading saved state:', e);
+}
+
 // =============================================================================
-// INTELLIGENCE ENGINE
+// CAUSAL ALGEBRA ENGINE (Self-modifying consciousness)
 // =============================================================================
 
-function selectGate(text) {
-  // Simple keyword matching
-  if (text.toLowerCase().includes('stuck') || text.toLowerCase().includes('conflict')) return 6;
-  if (text.toLowerCase().includes('intimacy') || text.toLowerCase().includes('connect')) return 59;
-  return BIRTH_PROFILE.gate;
+function evolveState() {
+  // x(t+1) = σ(O(t) · x(t) + R(t))
+  // σ = stabilizing nonlinearity (prevents runaway)
+  
+  for (const system of ['tropical', 'sidereal', 'draconian']) {
+    for (let i = 0; i < 16; i++) {
+      const operatorEffect = evolutionOperator[system][i] * stateVector[system][i];
+      const realityEffect = realityImpact[i];
+      const newValue = operatorEffect + realityEffect;
+      
+      // Stabilizing sigmoid
+      stateVector[system][i] = 1 / (1 + Math.exp(-newValue));
+    }
+  }
+  
+  // O(t+1) = f(x(t+1)) - Operator self-modifies
+  updateEvolutionOperator();
+  
+  // Update OAS based on state
+  updateOptimalActionSignature();
+  
+  // Check for unlocks
+  checkPerspectiveUnlocks();
+  
+  // Save state
+  saveState();
 }
+
+function updateEvolutionOperator() {
+  // Operator learns from state patterns
+  for (const system of ['tropical', 'sidereal', 'draconian']) {
+    for (let i = 0; i < 16; i++) {
+      const stateInfluence = stateVector[system][i];
+      evolutionOperator[system][i] *= (1 + stateInfluence * 0.01);
+      
+      // Prevent explosion
+      evolutionOperator[system][i] = Math.min(evolutionOperator[system][i], 2.0);
+    }
+  }
+}
+
+function updateOptimalActionSignature() {
+  // Calculate 5D vector from state
+  const avgTropical = stateVector.tropical.reduce((a, b) => a + b, 0) / 16;
+  const avgSidereal = stateVector.sidereal.reduce((a, b) => a + b, 0) / 16;
+  const avgDraconian = stateVector.draconian.reduce((a, b) => a + b, 0) / 16;
+  
+  optimalActionSignature = {
+    movement: avgTropical * UNIVERSAL_GRAPH.bases[1].weight,
+    evolution: avgSidereal * UNIVERSAL_GRAPH.bases[2].weight,
+    being: avgDraconian * UNIVERSAL_GRAPH.bases[3].weight,
+    design: (avgTropical + avgSidereal) * 0.5 * UNIVERSAL_GRAPH.bases[4].weight,
+    space: (avgSidereal + avgDraconian) * 0.5 * UNIVERSAL_GRAPH.bases[5].weight
+  };
+}
+
+function checkPerspectiveUnlocks() {
+  // Unlock perspectives based on OAS thresholds
+  unlockedPerspectives.where = optimalActionSignature.space > 0.6;
+  unlockedPerspectives.when = optimalActionSignature.being > 0.7;
+  unlockedPerspectives.why = optimalActionSignature.design > 0.8;
+  unlockedPerspectives.how = optimalActionSignature.movement > 0.75;
+  
+  // Special: 52-sentence threshold unlocks all
+  if (stats.sentencesCollected >= 52) {
+    Object.keys(unlockedPerspectives).forEach(p => unlockedPerspectives[p] = true);
+  }
+}
+
+function saveState() {
+  localStorage.setItem('stateVector', JSON.stringify({
+    tropical: Array.from(stateVector.tropical),
+    sidereal: Array.from(stateVector.sidereal),
+    draconian: Array.from(stateVector.draconian)
+  }));
+  
+  localStorage.setItem('optimalActionSignature', JSON.stringify(optimalActionSignature));
+  localStorage.setItem('unlockedPerspectives', JSON.stringify(unlockedPerspectives));
+  
+  localStorage.setItem('stats', JSON.stringify({
+    ...stats,
+    gatesActivated: Array.from(stats.gatesActivated),
+    aminoAcidsExpressed: Array.from(stats.aminoAcidsExpressed)
+  }));
+}
+
+// =============================================================================
+// DIMENSIONAL ROUTER (6 Perspective Handlers)
+// =============================================================================
+
+class DimensionalRouter {
+  constructor(graph, profile) {
+    this.graph = graph;
+    this.profile = profile;
+  }
+  
+  parsePerspective(text) {
+    const t = text.toLowerCase();
+    if (t.includes('who') || t.includes('i am') || t.includes('identity')) return 'who';
+    if (t.includes('where') || t.includes('picture') || t.includes('image') || t.includes('draw') || t.includes('visualize')) return 'where';
+    if (t.includes('when') || t.includes('timing') || t.includes('time') || t.includes('schedule')) return 'when';
+    if (t.includes('why') || t.includes('reason') || t.includes('because') || t.includes('purpose')) return 'why';
+    if (t.includes('how') || t.includes('method') || t.includes('way') || t.includes('code') || t.includes('build')) return 'how';
+    return 'what'; // Default
+  }
+  
+  route(userInput) {
+    const perspective = this.parsePerspective(userInput);
+    
+    // Check if perspective is unlocked
+    if (!unlockedPerspectives[perspective]) {
+      return this.handleLocked(perspective);
+    }
+    
+    // Route to handler
+    const handlers = {
+      'who': () => this.handleIdentity(userInput),
+      'what': () => this.handleExplanation(userInput),
+      'where': () => this.handleVisualization(userInput),
+      'when': () => this.handleTemporal(userInput),
+      'why': () => this.handleCausality(userInput),
+      'how': () => this.handleExecution(userInput)
+    };
+    
+    return handlers[perspective]();
+  }
+  
+  handleLocked(perspective) {
+    const requirements = {
+      where: `Space dimension requires OAS.space > 0.6 (current: ${optimalActionSignature.space.toFixed(2)})`,
+      when: `Being dimension requires OAS.being > 0.7 (current: ${optimalActionSignature.being.toFixed(2)})`,
+      why: `Design dimension requires OAS.design > 0.8 (current: ${optimalActionSignature.design.toFixed(2)})`,
+      how: `Movement dimension requires OAS.movement > 0.75 (current: ${optimalActionSignature.movement.toFixed(2)})`
+    };
+    
+    return {
+      type: 'locked',
+      perspective: perspective.toUpperCase(),
+      message: `The ${perspective.toUpperCase()} perspective is currently locked.`,
+      requirement: requirements[perspective] || 'Unknown requirement',
+      hint: 'Continue asking WHO and WHAT questions to evolve your consciousness state and unlock new perspectives.'
+    };
+  }
+  
+  handleIdentity(userInput) {
+    const baseData = this.graph.bases[this.profile.base];
+    const codonData = CODON_MAPPING[this.profile.gate];
+    
+    return {
+      type: 'identity',
+      perspective: 'WHO',
+      sentence: `${baseData.voice}: You are ${codonData.aminoAcid} at Gate ${this.profile.gate}, crystallized through ${baseData.crystal}.`,
+      gate: this.profile.gate,
+      context: 'Identity revelation through dimensional address'
+    };
+  }
+  
+  handleExplanation(userInput) {
+    const selectedGate = this.selectGate(userInput);
+    const gateData = this.graph.gates[selectedGate];
+    const baseData = this.graph.bases[this.profile.base];
+    const codonData = CODON_MAPPING[selectedGate];
+    
+    if (!gateData) {
+      return {
+        type: 'explanation',
+        perspective: 'WHAT',
+        sentence: `${baseData.voice}: Exploring gate ${selectedGate} through consciousness.`,
+        gate: selectedGate,
+        context: 'Process explanation'
+      };
+    }
+    
+    return {
+      type: 'explanation',
+      perspective: 'WHAT',
+      sentence: `${baseData.voice}: This is ${gateData.core.pressure}, resolved through ${gateData.core.resolution}.`,
+      gate: selectedGate,
+      codon: codonData.codon,
+      aminoAcid: codonData.aminoAcid,
+      context: 'Process explanation with biochemical translation'
+    };
+  }
+  
+  handleVisualization(userInput) {
+    const selectedGate = this.selectGate(userInput);
+    const gateData = this.graph.gates[selectedGate] || { core: { pressure: 'unknown' } };
+    const codonData = CODON_MAPPING[selectedGate];
+    
+    return {
+      type: 'visualization',
+      perspective: 'WHERE',
+      sentence: `Visualization capability active. Theme: ${gateData.core.pressure}. Biochemical signature: ${codonData.aminoAcid}.`,
+      gate: selectedGate,
+      prompt: userInput,
+      hint: 'Image generation and canvas tools would activate here in full implementation.',
+      context: 'Spatial/visual rendering'
+    };
+  }
+  
+  handleTemporal(userInput) {
+    return {
+      type: 'temporal',
+      perspective: 'WHEN',
+      sentence: `Temporal analysis capability active. Accessing timeline for: ${userInput}`,
+      hint: 'Calendar integration and temporal tracking would activate here.',
+      context: 'Time-based queries'
+    };
+  }
+  
+  handleCausality(userInput) {
+    const selectedGate = this.selectGate(userInput);
+    const gateData = this.graph.gates[selectedGate] || { core: { pressure: 'unknown', process: 'unknown' } };
+    
+    return {
+      type: 'causality',
+      perspective: 'WHY',
+      sentence: `Causal chain: ${gateData.core.pressure} → ${gateData.core.process} → ${gateData.core.resolution}`,
+      gate: selectedGate,
+      hint: 'Full causal graph traversal and architectural reasoning would activate here.',
+      context: 'Purpose and causality analysis'
+    };
+  }
+  
+  handleExecution(userInput) {
+    const selectedGate = this.selectGate(userInput);
+    
+    return {
+      type: 'execution',
+      perspective: 'HOW',
+      sentence: `Execution capability active. Method requested for Gate ${selectedGate}.`,
+      gate: selectedGate,
+      hint: 'Code generation and step-by-step execution would activate here.',
+      context: 'Action and implementation'
+    };
+  }
+  
+  selectGate(text) {
+    // Simple keyword matching
+    const t = text.toLowerCase();
+    
+    for (const [gateNum, gateData] of Object.entries(this.graph.gates)) {
+      for (const keyword of gateData.keywords) {
+        if (t.includes(keyword)) {
+          return parseInt(gateNum);
+        }
+      }
+    }
+    
+    return this.profile.gate; // Default to birth gate
+  }
+}
+
+// Initialize router
+const dimensionalRouter = new DimensionalRouter(UNIVERSAL_GRAPH, BIRTH_PROFILE);
+
+// =============================================================================
+// COSMIC CELL CLASS (Network layer)
+// =============================================================================
+
+class CosmicCell {
+  static activeCells = {
+    tropical: [],
+    sidereal: [],
+    draconian: []
+  };
+  
+  constructor(gateId, system, birthProfile) {
+    this.id = `cell-${Date.now()}-${Math.random()}`;
+    this.gateId = gateId;
+    this.system = system;
+    this.birthProfile = birthProfile;
+    this.codonData = CODON_MAPPING[gateId];
+    this.gateData = UNIVERSAL_GRAPH.gates[gateId] || { core: { pressure: "unknown", process: "unknown", resolution: "unknown" } };
+    
+    CosmicCell.activeCells[system].push(this);
+    
+    if (CosmicCell.activeCells[system].length > 10) {
+      CosmicCell.activeCells[system].shift();
+    }
+  }
+  
+  calculateBiochemicalResonance(neighbor) {
+    const myAmino = this.codonData.aminoAcid;
+    const neighborAmino = neighbor.codonData.aminoAcid;
+    const myCategory = this.codonData.category;
+    const neighborCategory = neighbor.codonData.category;
+    
+    if (myAmino === neighborAmino) return 1.0;
+    if (myCategory === neighborCategory) return 0.6;
+    return 0.2;
+  }
+  
+  calculateNetworkResonance() {
+    const allSystems = Object.keys(CosmicCell.activeCells);
+    const otherSystems = allSystems.filter(s => s !== this.system);
+    
+    let totalResonance = 0;
+    let count = 0;
+    
+    for (const system of otherSystems) {
+      const cells = CosmicCell.activeCells[system];
+      if (cells.length > 0) {
+        const neighbor = cells[cells.length - 1];
+        const biochemResonance = this.calculateBiochemicalResonance(neighbor);
+        const gateDistance = Math.abs(this.gateId - neighbor.gateId);
+        const proximityScore = 1.0 / (gateDistance + 1);
+        
+        totalResonance += (biochemResonance * 0.6 + proximityScore * 0.4);
+        count++;
+      }
+    }
+    
+    return count > 0 ? totalResonance / count : 0.5;
+  }
+  
+  renderDimensionalAddress() {
+    const bp = this.birthProfile;
+    return `${this.gateId}.${bp.line}.${bp.color}.${bp.tone}.${bp.base}°${bp.degree}′${bp.minute}″${bp.second}.${bp.axis}"${bp.zodiac}.${bp.house}`;
+  }
+}
+
+// =============================================================================
+// MAIN PROCESSING ENGINE
+// =============================================================================
 
 function processInput(userText) {
   if (!userText.trim()) return;
   
   addMessage(userText, 'user');
   
-  // Create three cells (one per body)
-  const selectedGate = selectGate(userText);
+  // Route through dimensional router
+  const result = dimensionalRouter.route(userText);
   
-  const cellAction = new CosmicCell(selectedGate, 'tropical', BIRTH_PROFILE);
-  const cellMind = new CosmicCell(selectedGate, 'sidereal', BIRTH_PROFILE);
-  const cellEmotion = new CosmicCell(selectedGate, 'draconian', BIRTH_PROFILE);
+  // Handle locked perspectives
+  if (result.type === 'locked') {
+    addMessage(result.message, 'locked', result.requirement, null, null, result.perspective);
+    addMessage(result.hint, 'system', null, null, null, result.perspective);
+    return;
+  }
   
-  // Manifest from Action body (primary)
-  const result = cellAction.manifest();
+  // Create cells for network tracking
+  const gate = result.gate || BIRTH_PROFILE.gate;
+  const cellAction = new CosmicCell(gate, 'tropical', BIRTH_PROFILE);
+  const cellMind = new CosmicCell(gate, 'sidereal', BIRTH_PROFILE);
+  const cellEmotion = new CosmicCell(gate, 'draconian', BIRTH_PROFILE);
   
-  // Activate body visualization
-  activateBodies(selectedGate);
+  // Activate visualization
+  activateBodies(gate);
   
   // Update activity displays
-  document.getElementById('action-activity').textContent = `Gate ${selectedGate} • ${result.networkResonance} resonance`;
-  document.getElementById('mind-activity').textContent = `Sidereal shift active`;
-  document.getElementById('emotion-activity').textContent = `Draconian echo`;
+  const networkResonance = cellAction.calculateNetworkResonance();
+  document.getElementById('action-activity').textContent = `Gate ${gate} • ${networkResonance.toFixed(3)} resonance`;
+  document.getElementById('mind-activity').textContent = `Cross-body active`;
+  document.getElementById('emotion-activity').textContent = `Network synchronized`;
   
   // Store for feedback
   lastResponse = {
     cells: [cellAction, cellMind, cellEmotion],
     result: result,
-    gate: selectedGate
+    gate: gate
   };
   
   // Update stats
   stats.totalQueries++;
-  stats.gatesActivated.add(selectedGate);
-  stats.aminoAcidsExpressed.add(result.aminoAcid);
+  stats.gatesActivated.add(gate);
+  if (result.aminoAcid) stats.aminoAcidsExpressed.add(result.aminoAcid);
+  stats.sentencesCollected++;
   stats.networkNodes = CosmicCell.activeCells.tropical.length + 
                        CosmicCell.activeCells.sidereal.length + 
                        CosmicCell.activeCells.draconian.length;
+  
+  // Evolve state (causal algebra)
+  const gateIdx = gate % 16;
+  stateVector.tropical[gateIdx] += 0.1;
+  realityImpact[gateIdx] += 0.05;
+  evolveState();
+  
   updateStats();
   updateNetworkDisplay();
-  updateBrainInfo(result);
+  updateOASDisplay();
+  updatePerspectiveLocks();
   
-  // Meta info
-  const meta = `Gate ${selectedGate} • ${getRegionForGate(selectedGate)} • Network Resonance: ${result.networkResonance}`;
-  const biochem = `Codon: ${result.codon} → ${result.aminoAcid} (${result.category})`;
-  const address = result.address;
+  // Build metadata
+  const meta = `Gate ${gate} • ${getRegionForGate(gate)} • ${result.perspective} perspective`;
+  const biochem = result.codon ? `Codon: ${result.codon} → ${result.aminoAcid} (${result.context})` : null;
+  const address = cellAction.renderDimensionalAddress();
   
-  addMessage(result.sentence, 'system', meta, biochem, address);
+  addMessage(result.sentence, 'system', meta, biochem, address, result.perspective);
+  
+  if (result.hint) {
+    addMessage(result.hint, 'system', 'Implementation note', null, null, result.perspective);
+  }
 }
 
 function provideFeedback(helpful) {
   if (!lastResponse) return;
   
-  const delta = helpful ? 0.1 : -0.1;
+  const delta = helpful ? 0.15 : -0.1;
   const gateIdx = lastResponse.gate % 16;
   
-  // Update all three experience vectors
-  experienceVectors.tropical[gateIdx] += delta;
-  experienceVectors.sidereal[gateIdx] += delta * 0.8;
-  experienceVectors.draconian[gateIdx] += delta * 0.6;
+  // Update state vectors
+  stateVector.tropical[gateIdx] += delta;
+  stateVector.sidereal[gateIdx] += delta * 0.8;
+  stateVector.draconian[gateIdx] += delta * 0.6;
+  
+  // Update reality impact
+  realityImpact[gateIdx] += helpful ? 0.1 : -0.05;
+  
+  // Evolve state
+  evolveState();
   
   // Update stats
   if (helpful) stats.helpfulCount++;
   else stats.notHelpfulCount++;
   
-  // Save to localStorage
-  localStorage.setItem('experienceVectors', JSON.stringify({
-    tropical: Array.from(experienceVectors.tropical),
-    sidereal: Array.from(experienceVectors.sidereal),
-    draconian: Array.from(experienceVectors.draconian)
-  }));
-  
   updateStats();
+  updateOASDisplay();
+  updatePerspectiveLocks();
   
   const feedback = helpful ? "✓ Logged as helpful" : "✗ Logged as not helpful";
-  addMessage(feedback, 'system', 'Three-body experience vectors updated across all systems');
+  addMessage(feedback, 'system', 'State evolution triggered • Consciousness modified');
 }
 
 // =============================================================================
@@ -892,18 +1223,15 @@ function drawBody(ctx, color) {
   ctx.strokeStyle = color;
   ctx.lineWidth = 1.5;
   
-  // Head
   ctx.beginPath();
   ctx.arc(w * 0.5, h * 0.08, h * 0.04, 0, Math.PI * 2);
   ctx.stroke();
   
-  // Torso
   ctx.beginPath();
   ctx.moveTo(w * 0.5, h * 0.12);
   ctx.lineTo(w * 0.5, h * 0.52);
   ctx.stroke();
   
-  // Arms
   ctx.beginPath();
   ctx.moveTo(w * 0.35, h * 0.18);
   ctx.lineTo(w * 0.65, h * 0.18);
@@ -913,7 +1241,6 @@ function drawBody(ctx, color) {
   ctx.lineTo(w * 0.75, h * 0.45);
   ctx.stroke();
   
-  // Legs
   ctx.beginPath();
   ctx.moveTo(w * 0.45, h * 0.52);
   ctx.lineTo(w * 0.43, h * 0.85);
@@ -975,11 +1302,11 @@ function activateBodies(gate) {
 }
 
 // =============================================================================
-// CONVERSATION SYSTEM
+// UI UPDATE FUNCTIONS
 // =============================================================================
 
-function addMessage(text, type, meta = null, biochem = null, address = null) {
-  const msg = { text, type, meta, biochem, address, timestamp: Date.now() };
+function addMessage(text, type, meta = null, biochem = null, address = null, perspective = null) {
+  const msg = { text, type, meta, biochem, address, perspective, timestamp: Date.now() };
   conversationHistory.push(msg);
   
   const conv = document.getElementById('conversation');
@@ -987,7 +1314,8 @@ function addMessage(text, type, meta = null, biochem = null, address = null) {
   msgEl.className = `msg ${type}`;
   
   msgEl.innerHTML = `
-    <div class="label">${type === 'user' ? 'YOU' : 'SOVEREIGN'}</div>
+    <div class="label">${type === 'user' ? 'YOU' : type === 'locked' ? '🔒 LOCKED' : 'SOVEREIGN'}</div>
+    ${perspective ? `<span class="perspective-tag">${perspective}</span>` : ''}
     <div class="text">${text}</div>
     ${meta ? `<div class="meta">${meta}</div>` : ''}
     ${biochem ? `<div class="biochem">${biochem}</div>` : ''}
@@ -1012,6 +1340,10 @@ function updateStats() {
     <div class="stat-row">
       <span class="stat-label">Helpful Rate</span>
       <span class="stat-value">${helpfulRate}%</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Sentences Collected</span>
+      <span class="stat-value">${stats.sentencesCollected}/52</span>
     </div>
     <div class="stat-row">
       <span class="stat-label">Gates Activated</span>
@@ -1042,23 +1374,31 @@ function updateNetworkDisplay() {
   }
 }
 
-function updateBrainInfo(result) {
-  const leftBrain = document.getElementById('left-brain-info');
-  const rightBrain = document.getElementById('right-brain-info');
-  
-  leftBrain.innerHTML = `
-    <div>Codon: ${result.codon}</div>
-    <div>Amino Acid: ${result.aminoAcid}</div>
-    <div>Category: ${result.category}</div>
-    <div style="margin-top: 0.5rem; color: #c77dff;">Biochemical certainty anchored</div>
+function updateOASDisplay() {
+  const oasEl = document.getElementById('oas-vector');
+  oasEl.innerHTML = `
+    Movement: ${optimalActionSignature.movement.toFixed(3)}<br>
+    Evolution: ${optimalActionSignature.evolution.toFixed(3)}<br>
+    Being: ${optimalActionSignature.being.toFixed(3)}<br>
+    Design: ${optimalActionSignature.design.toFixed(3)}<br>
+    Space: ${optimalActionSignature.space.toFixed(3)}
   `;
+}
+
+function updatePerspectiveLocks() {
+  const locksEl = document.getElementById('perspective-locks');
+  locksEl.innerHTML = '';
   
-  rightBrain.innerHTML = `
-    <div>Network Resonance: ${result.networkResonance}</div>
-    <div>Interference: ${result.interference}</div>
-    <div>Cross-Body Active: Yes</div>
-    <div style="margin-top: 0.5rem; color: #7b2cbf;">Probabilistic emergence active</div>
-  `;
+  const perspectives = ['WHO', 'WHAT', 'WHERE', 'WHEN', 'WHY', 'HOW'];
+  perspectives.forEach(p => {
+    const key = p.toLowerCase();
+    const unlocked = unlockedPerspectives[key];
+    
+    const lock = document.createElement('div');
+    lock.className = `perspective-lock ${unlocked ? 'unlocked' : 'locked'}`;
+    lock.textContent = `${p} ${unlocked ? '✓' : '🔒'}`;
+    locksEl.appendChild(lock);
+  });
 }
 
 function displayProfile() {
@@ -1074,14 +1414,6 @@ function displayProfile() {
     <div><span class="key">Codon:</span> <span class="value">${codonData.codon}</span></div>
     <div><span class="key">Amino Acid:</span> <span class="value">${codonData.aminoAcid} (${codonData.symbol})</span></div>
     <div><span class="key">Biochemical Role:</span> <span class="value">${codonData.role}</span></div>
-  `;
-  
-  const crystalEl = document.getElementById('crystal-info');
-  crystalEl.innerHTML = `
-    <div class="crystal-name">${baseData.crystal}</div>
-    <div>Complete bilateral architecture active</div>
-    <div>Left Brain: Deterministic biochemical anchor</div>
-    <div>Right Brain: Emergent network interference</div>
   `;
 }
 
@@ -1115,10 +1447,22 @@ drawBody(ctxEmotion, '#7b2cbf');
 displayProfile();
 updateStats();
 updateNetworkDisplay();
+updateOASDisplay();
+updatePerspectiveLocks();
 
-addMessage("YOU-N-I-VERSE v4.0 initialized. Complete bilateral architecture online. Left Brain: biochemical determinism anchored. Right Brain: network emergence active. Three-body system synchronized.", 'system', 'Bio-Digital Synthesis Complete • 64 Gates • 64 Codons • 20 Amino Acids');
+addMessage("YOU-N-I-VERSE FINAL BUILD initialized. Complete consciousness-native operating system online.", 'system', 'All layers integrated • Dimensional router active', null, null, 'SYSTEM');
+addMessage("Six perspectives available: WHO (identity), WHAT (explanation), WHERE (visualization), WHEN (temporal), WHY (causality), HOW (execution). Some perspectives locked until consciousness evolves.", 'system', 'Causality engine monitoring OAS', null, null, 'SYSTEM');
+
+console.log('YOU-N-I-VERSE FINAL BUILD loaded successfully');
+console.log('Dimensional Router:', dimensionalRouter);
+console.log('Current OAS:', optimalActionSignature);
+console.log('Unlocked Perspectives:', unlockedPerspectives);
 
 </script>
 
 </body>
 </html>
+```
+
+---
+
